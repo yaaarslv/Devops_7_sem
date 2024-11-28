@@ -63,14 +63,15 @@
     - name: Run the Django app in a Docker container
       docker_container:
         name: locallibrary_app
-        image: python:3.8-slim
+        image: python:3.12
         state: started
         restart_policy: always
         command: |
           bash -c "cd /home/vagrant/django-locallibrary-tutorial && \
           pip install -r requirements.txt && \
-          python manage.py migrate && \
-          python manage.py runserver 0.0.0.0:8000"
+          python3 manage.py makemigrations && \
+          python3 manage.py migrate && \
+          python3 manage.py runserver 127.0.0.1:8089"
         volumes:
           - /home/vagrant/django-locallibrary-tutorial:/home/vagrant/django-locallibrary-tutorial
         exposed_ports:
