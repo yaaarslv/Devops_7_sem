@@ -69,6 +69,7 @@
         command: |
           bash -c "cd /home/vagrant/django-locallibrary-tutorial && \
           pip install -r requirements.txt && \
+          sed -i \"s/ALLOWED_HOSTS = \\[.*\\]/ALLOWED_HOSTS = ['*']/\" locallibrary/settings.py && \
           python3 manage.py makemigrations && \
           python3 manage.py migrate && \
           python3 manage.py runserver 0.0.0.0:8089"
