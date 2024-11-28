@@ -4,7 +4,7 @@
   vars:
     container_count: 4
     default_container_name: docker
-    default_container_image: ubuntu
+    default_container_image: python:3.12
     default_container_command: sleep 1d
 
   tasks:
@@ -71,13 +71,13 @@
           pip install -r requirements.txt && \
           python3 manage.py makemigrations && \
           python3 manage.py migrate && \
-          python3 manage.py runserver 127.0.0.1:8089"
+          python3 manage.py runserver 0.0.0.0:8089"
         volumes:
           - /home/vagrant/django-locallibrary-tutorial:/home/vagrant/django-locallibrary-tutorial
         exposed_ports:
-          - "8000"
+          - "8089"
         published_ports:
-          - "8000:8000"
+          - "8089:8089"
         container_default_behavior: compatibility
 
     - name: List running containers
